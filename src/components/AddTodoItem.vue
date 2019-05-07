@@ -1,11 +1,13 @@
 <template>
   <div class="add-todo-item">
     <input v-model="itemText" type="text">
-    <button @click="addTodoItem">Ajouter</button>
+    <button @click="addItem">Ajouter</button>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
@@ -13,8 +15,9 @@ export default {
     }
   },
   methods: {
-    addTodoItem () {
-      this.$emit('add-todo-item', this.itemText)
+    ...mapActions(['addTodoItem']),
+    addItem () {
+      this.addTodoItem({ itemText: this.itemText })
     }
   }
 }

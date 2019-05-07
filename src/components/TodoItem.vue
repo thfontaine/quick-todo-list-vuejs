@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     item: {
@@ -14,8 +16,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['removeTodoItem']),
     removeItem () {
-      this.$emit('remove-todo-item', this.item)
+      this.removeTodoItem({ itemToRemove: this.item })
     }
   }
 }
